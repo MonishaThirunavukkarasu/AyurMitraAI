@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="predict-section">
+    <div class="container">
+        <h2>AI Disease Prediction</h2>
+        <p class="subtitle">Enter symptoms and lifestyle details</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, msg in messages %}
+                    <li class="flash {{ category }}">{{ msg }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('predict') }}" class="predict-form">
+
+            <div class="form-group">
+                <label>Symptoms</label>
+                <textarea name="symptoms" placeholder="Enter symptoms separated by comma..." required></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="age" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Weight (kg)</label>
+                    <input type="number" name="weight" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Sleep Hours</label>
+                    <input type="number" name="sleep" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Stress Level (1-10)</label>
+                    <input type="number" name="stress" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Predict Disease</button>
+
+        </form>
+    </div>
+</section>
+
+{% endblock %}

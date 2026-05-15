@@ -1,0 +1,9 @@
+Arthritis
+Asthma
+Atherosclerosis
+Cystic Fibrosis
+Epilepsy
+Hepatitis
+Hypertension
+Other Diseases
+Tuberculosis

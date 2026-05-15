@@ -1,0 +1,39 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+<section class="auth-section">
+    <div class="form-container">
+        <div class="form-card">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your AyurMitraAI account</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flash-messages">
+                    {% for category, msg in messages %}
+                        <li class="flash {{ category }}">{{ msg }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+                <input type="email" name="email" placeholder="Email Address" required autocomplete="email">
+                <input type="password" name="password" placeholder="Password" required autocomplete="current-password">
+
+                <div class="checkbox-group">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember me for 30 days</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+
+            <p class="form-link">
+                Don't have an account? <a href="/signup">Create one</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

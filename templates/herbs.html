@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="herbs-section">
+    <div class="container">
+        <div class="herbs-header">
+            <h1>Essential Ayurvedic Herbs</h1>
+            <p>Discover nature's pharmacy - powerful herbs that have been used for millennia in Ayurvedic medicine to promote health, balance doshas, and prevent disease. Each herb offers unique therapeutic benefits for holistic wellness.</p>
+        </div>
+
+        {% if herbs and herbs|length > 0 %}
+        <div class="herbs-grid">
+            {% for herb in herbs %}
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="herb-image-container">
+                            {% if herb.image %}
+                                <img src="{{ url_for('static', filename='images/' + herb.image) }}" alt="{{ herb.name }}">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='images/default-herb.jpg') }}" alt="{{ herb.name }}">
+                            {% endif %}
+                        </div>
+                        <div class="card-overlay">
+                            <h3>{{ herb.name }}</h3>
+                            {% if herb.doshas %}
+                                <div class="dosha-tags">
+                                    {% for dosha in herb.doshas.split(',') %}
+                                        <span class="dosha-tag {{ dosha.lower().strip() }}">{{ dosha.strip() }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>{{ herb.name }}</h3>
+                        {% if herb.description %}
+                            <div class="herb-description">{{ herb.description }}</div>
+                        {% endif %}
+                        {% if herb.benefits %}
+                            <h4>Benefits:</h4>
+                            <ul class="herb-benefits">
+                                {% for ben in herb.benefits %}
+                                    <li>{{ ben }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No herb information available at the moment.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="dosha-hero">
+    <img src="{{ url_for('static', filename='images/vpknew.jpg') }}" alt="Ayurveda Doshas">
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>The Three Doshas</h1>
+            <p>Ancient Ayurvedic Science for Modern Wellness</p>
+        </div>
+    </div>
+</section>
+
+<!-- Introduction Section -->
+<section class="container">
+    <div class="intro-section">
+        <h2>Understanding Doshas: The Foundation of Ayurveda</h2>
+        <p>In Ayurveda, the three doshas—<strong>Vata</strong>, <strong>Pitta</strong>, and <strong>Kapha</strong>—are fundamental energies that govern our physical and mental well-being. These doshas are combinations of the five great elements: Space, Air, Fire, Water, and Earth.</p>
+        <p>Each person has a unique balance of these doshas, known as <strong>Prakriti</strong>, which determines their constitution and health tendencies. Understanding your dosha helps create personalized wellness strategies.</p>
+    </div>
+</section>
+
+<!-- Doshas Cards Section -->
+<section class="container">
+    <div class="doshas-grid">
+        
+        <!-- VATA CARD -->
+        <div class="dosha-card vata-card">
+            <div class="dosha-image-container">
+                <img src="{{ url_for('static', filename='images/vata.jfif') }}" alt="Vata Dosha">
+                <div class="dosha-badge">VATA</div>
+            </div>
+            <div class="dosha-info">
+                <h3>Vata Dosha</h3>
+                <p class="dosha-element"><strong>Elements:</strong> Space + Air</p>
+                
+                <div class="dosha-details">
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Space + Air elements</li>
+                        <li>Governs movement & circulation</li>
+                        <li>Cold, light, dry, mobile nature</li>
+                        <li>Controls nervous system & creativity</li>
+                    </ul>
+                    
+                    <h4>When Balanced:</h4>
+                    <p>Energetic, creative, adaptable with good digestion and clear thoughts.</p>
+                    
+                    <h4>When Imbalanced:</h4>
+                    <p>Anxiety, insomnia, constipation, dry skin, and scattered thoughts.</p>
+                    
+                    <h4>Balancing Tips:</h4>
+                    <ul>
+                        <li>Warm, nourishing foods (ghee, oils)</li>
+                        <li>Regular routine & adequate rest</li>
+                        <li>Meditation & grounding practices</li>
+                        <li>Herbs: Ashwagandha, Brahmi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PITTA CARD -->
+        <div class="dosha-card pitta-card">
+            <div class="dosha-image-container">
+                <img src="{{ url_for('static', filename='images/pitta.jfif') }}" alt="Pitta Dosha">
+                <div class="dosha-badge">PITTA</div>
+            </div>
+            <div class="dosha-info">
+                <h3>Pitta Dosha</h3>
+                <p class="dosha-element"><strong>Elements:</strong> Fire + Water</p>
+                
+                <div class="dosha-details">
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Fire + Water elements</li>
+                        <li>Governs digestion & metabolism</li>
+                        <li>Hot, sharp, intense, transformative</li>
+                        <li>Controls body temperature & enzymes</li>
+                    </ul>
+                    
+                    <h4>When Balanced:</h4>
+                    <p>Confident, focused, energetic with excellent digestion and warm body temperature.</p>
+                    
+                    <h4>When Imbalanced:</h4>
+                    <p>Acidity, inflammation, skin rashes, anger, irritability, and excessive heat.</p>
+                    
+                    <h4>Balancing Tips:</h4>
+                    <ul>
+                        <li>Cool, non-spicy foods</li>
+                        <li>Avoid excessive heat & sun exposure</li>
+                        <li>Cooling yoga & swimming</li>
+                        <li>Herbs: Turmeric, Neem, Brahmi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- KAPHA CARD -->
+        <div class="dosha-card kapha-card">
+            <div class="dosha-image-container">
+                <img src="{{ url_for('static', filename='images/kapha.jfif') }}" alt="Kapha Dosha">
+                <div class="dosha-badge">KAPHA</div>
+            </div>
+            <div class="dosha-info">
+                <h3>Kapha Dosha</h3>
+                <p class="dosha-element"><strong>Elements:</strong> Earth + Water</p>
+                
+                <div class="dosha-details">
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Earth + Water elements</li>
+                        <li>Governs structure & stability</li>
+                        <li>Heavy, slow, stable, nurturing</li>
+                        <li>Maintains immunity & lubrication</li>
+                    </ul>
+                    
+                    <h4>When Balanced:</h4>
+                    <p>Grounded, calm, stable with strong immunity and nurturing nature.</p>
+                    
+                    <h4>When Imbalanced:</h4>
+                    <p>Weight gain, sluggishness, congestion, depression, and heaviness in body & mind.</p>
+                    
+                    <h4>Balancing Tips:</h4>
+                    <ul>
+                        <li>Warm, light, spiced foods</li>
+                        <li>Regular exercise & physical activity</li>
+                        <li>Stimulating yoga & pranayama</li>
+                        <li>Herbs: Ginger, Turmeric, Tripala</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Three Doshas Comparison -->
+<section class="container">
+    <div class="comparison-section">
+        <h2>Dosha Comparison</h2>
+        <table class="dosha-table">
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Vata</th>
+                    <th>Pitta</th>
+                    <th>Kapha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Elements</strong></td>
+                    <td>Space + Air</td>
+                    <td>Fire + Water</td>
+                    <td>Earth + Water</td>
+                </tr>
+                <tr>
+                    <td><strong>Qualities</strong></td>
+                    <td>Cold, dry, light</td>
+                    <td>Hot, sharp, intense</td>
+                    <td>Heavy, slow, stable</td>
+                </tr>
+                <tr>
+                    <td><strong>When Balanced</strong></td>
+                    <td>Creative, energetic</td>
+                    <td>Focused, confident</td>
+                    <td>Calm, strong</td>
+                </tr>
+                <tr>
+                    <td><strong>When Imbalanced</strong></td>
+                    <td>Anxious, dry skin</td>
+                    <td>Irritable, acidic</td>
+                    <td>Sluggish, congested</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+<!-- Balancing Tips Section -->
+<section class="container">
+    <div class="balancing-tips">
+        <h2>Holistic Approach to Dosha Balance</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4>🍽️ Diet</h4>
+                <p>Choose foods aligned with your dosha constitution to maintain harmony and optimal health.</p>
+            </div>
+            <div class="tip-card">
+                <h4>🧘 Yoga & Pranayama</h4>
+                <p>Practice specific asanas and breathing techniques to balance your dominant dosha.</p>
+            </div>
+            <div class="tip-card">
+                <h4>🌿 Herbal Remedies</h4>
+                <p>Use Ayurvedic herbs and formulations tailored to your unique constitutional needs.</p>
+            </div>
+            <div class="tip-card">
+                <h4>⏰ Daily Routine</h4>
+                <p>Follow a balanced daily regimen (dinacharya) to maintain dosha equilibrium.</p>
+            </div>
+            <div class="tip-card">
+                <h4>🧠 Mind & Emotion</h4>
+                <p>Cultivate mental peace through meditation, mindfulness, and stress management.</p>
+            </div>
+            <div class="tip-card">
+                <h4>🌍 Seasonal Alignment</h4>
+                <p>Adjust lifestyle and diet seasonally to counteract natural dosha fluctuations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

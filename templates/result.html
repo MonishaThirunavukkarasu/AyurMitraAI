@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="result-section">
+    <div class="container">
+        
+        <!-- 1. AYURVEDIC RECOMMENDATIONS SECTION (PRIORITY) -->
+        <div class="recommendations-section">
+            <h2>💊 Ayurvedic Health Recommendations</h2>
+            <p class="section-subtitle">Based on model prediction and dataset analysis</p>
+            
+            <div class="recommendation-grid">
+                <!-- HERBS -->
+                {% if herbs %}
+                <div class="rec-box rec-herbs">
+                    <div class="rec-icon">🌿</div>
+                    <h4>Ayurvedic Herbs</h4>
+                    <p>{{ herbs }}</p>
+                </div>
+                {% endif %}
+                
+                <!-- FORMULATION -->
+                {% if formulation %}
+                <div class="rec-box rec-formulation">
+                    <div class="rec-icon">⚗️</div>
+                    <h4>Herbal Formulation</h4>
+                    <p>{{ formulation }}</p>
+                </div>
+                {% endif %}
+                
+                <!-- DIET RECOMMENDATIONS -->
+                {% if diet %}
+                <div class="rec-box rec-diet">
+                    <div class="rec-icon">🥗</div>
+                    <h4>Diet & Food Changes</h4>
+                    <p>{{ diet }}</p>
+                </div>
+                {% endif %}
+                
+                <!-- LIFESTYLE/YOGA -->
+                {% if lifestyle %}
+                <div class="rec-box rec-lifestyle">
+                    <div class="rec-icon">🧘</div>
+                    <h4>Yoga & Physical Therapy</h4>
+                    <p>{{ lifestyle }}</p>
+                </div>
+                {% endif %}
+                
+                <!-- PREVENTION -->
+                {% if prevention %}
+                <div class="rec-box rec-prevention">
+                    <div class="rec-icon">🛡️</div>
+                    <h4>Prevention Strategies</h4>
+                    <p>{{ prevention }}</p>
+                </div>
+                {% endif %}
+                
+                <!-- PROGNOSIS -->
+                {% if prognosis %}
+                <div class="rec-box rec-prognosis">
+                    <div class="rec-icon">📊</div>
+                    <h4>Prognosis & Timeline</h4>
+                    <p>{{ prognosis }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 2. MAIN DISEASE PREDICTION SECTION (SMALL & COMPACT) -->
+        <div class="disease-prediction-box compact">
+            <div class="disease-header">
+                <h2>📋 Health Analysis Result</h2>
+            </div>
+            
+            {% if show_disease %}
+            <div class="disease-detected compact">
+                <div class="disease-badge">🏥</div>
+                <div class="disease-content">
+                    <h3>Detected: {{ disease }}</h3>
+                    <p class="disease-confidence">Model Confidence: {{ confidence }}%</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="disease-clear compact">
+                <div class="success-badge">✓</div>
+                <div class="disease-content">
+                    <h3>Overall Status: Healthy</h3>
+                    <p class="clear-note">{{ result_message }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="model-summary-box">
+                <span class="model-label">Model top match:</span>
+                {% if show_disease %}
+                <strong>{{ disease }}</strong>
+                <span class="model-confidence">({{ confidence }}%)</span>
+                {% else %}
+                <strong>Insufficient confidence to display disease</strong>
+                <span class="model-confidence">(Below threshold)</span>
+                {% endif %}
+                <p class="model-note">Prediction is driven by AI confidence threshold and dataset matching. If no clear condition is found, follow herbal and lifestyle guidelines.</p>
+            </div>
+        </div>
+
+        <!-- 2. DOSHA IMBALANCE SECTION (PROMINENT) -->
+        {% if doshas %}
+        <div class="result-dosha-section">
+            <h2>⚖️ Dosha Imbalance</h2>
+            <div class="dosha-display">
+                <p class="dosha-text">{{ doshas }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 3. CONSTITUTION/PRAKRITI -->
+        {% if constitution %}
+        <div class="constitution-section">
+            <h2>🌿 Body Constitution (Prakriti)</h2>
+            <div class="constitution-display">
+                <p class="constitution-text">{{ constitution }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 5. COMPLICATIONS INFO -->
+        {% if complications %}
+        <div class="complications-info">
+            <h3>⚠️ Possible Complications (If untreated)</h3>
+            <p>{{ complications }}</p>
+        </div>
+        {% endif %}
+
+        <!-- 6. MODEL PREDICTIONS BREAKDOWN (COMPACT) -->
+        {% if alternatives %}
+        <div class="probabilities-section compact">
+            <h2>🔍 All Model Predictions</h2>
+            <p class="section-subtitle">Complete ranking of diseasesfrom the AI model</p>
+            
+            <div class="probability-list compact">
+                {% if show_disease %}
+                <div class="prob-item-compact main">
+                    <span class="prob-rank">1</span>
+                    <span class="prob-disease">{{ disease }}</span>
+                    <span class="prob-percent">{{ confidence }}%</span>
+                </div>
+                {% endif %}
+                
+                {% for alt in alternatives %}
+                <div class="prob-item-compact">
+                    <span class="prob-rank">{{ loop.index + 1 }}</span>
+                    <span class="prob-disease">{{ alt.disease }}</span>
+                    <span class="prob-percent">{{ alt.confidence }}%</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 7. EXPLAINABLE AI SECTION (DETAILED) -->
+        {% if explanation %}
+        <div class="explanation-section detailed">
+            <h2>🤖 Why This Prediction Was Made</h2>
+            
+            <div class="explanation-box">
+                <h4>AI Model Analysis Process:</h4>
+                <ul class="explanation-points">
+                    {% for item in explanation.confidence_factors %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <div class="explanation-details">
+                    <h5>How Symptoms Were Analyzed</h5>
+                    <p>{{ explanation.symptom_importance }}</p>
+                    
+                    <h5>How Lifestyle Factors Were Considered</h5>
+                    <p>{{ explanation.lifestyle_impact }}</p>
+                    
+                    <h5>Top AI Feature Insights</h5>
+                    {% if explanation.shap_top_indices %}
+                    <p>Identified most influential features for this prediction: <strong>{{ explanation.shap_top_indices }}</strong>. These are derived from SHAP importance values on model inputs.</p>
+                    {% else %}
+                    <p>Feature importance is being computed; this helps explain why the model made this recommendation.</p>
+                    {% endif %}
+                    
+                    <h5>Confidence Threshold Explanation</h5>
+                    <p>
+                        {% if show_disease %}
+                        This prediction reached <strong>{{ confidence }}% confidence</strong>, which satisfies the safety threshold of 80%. The model identified {{ disease }} with high certainty based on the symptom patterns you entered.
+                        {% else %}
+                        The top prediction reached <strong>{{ confidence }}%</strong>, which is below the 80% safety threshold. This means no specific disease was clearly identified, so general wellness recommendations are provided instead.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+            <a href="{{ url_for('predict') }}" class="btn-primary">Make Another Prediction</a>
+            <a href="{{ url_for('dashboard') }}" class="btn-secondary">View Your History</a>
+            <a href="{{ url_for('herbs') }}" class="btn-tertiary">View Herb Database</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

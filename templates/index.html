@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <!-- use turmeric image as hero background -->
+    <img src="{{ url_for('static', filename='images/home.jfif') }}" alt="Ayurveda Background">
+    <div class="hero-text">
+        <span class="disease-badge" style="background: rgba(27, 79, 122, 0.2); color: rgb(73, 71, 71); margin-bottom: 20px;">
+            AI-Powered Ayurveda
+        </span>
+        <h1 style="font-size: 45px; color: #2A5C45;">Ancient Wisdom,<br>Modern Intelligence</h1>
+        <p>Experience personalized Ayurvedic diagnosis powered by deep learning.<br>
+        Predict diseases, analyze doshas, and get herbal recommendations instantly.</p>
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="{{ url_for('predict') }}">
+                <button class="btn-primary">Start Diagnosis</button>
+            </a>
+            <a href="#learn-more">
+                <button class="btn-secondary">Learn More</button>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="learn-more" class="container">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <p style="font-size: 22px; color: #1D4030; font-weight: 500; font-style: normal; max-width: 850px; margin: 0 auto 35px; line-height: 1.7; text-align: center; border-left: 4px solid #2A5C45; padding-left: 25px; background: linear-gradient(135deg, rgba(42, 92, 69, 0.05), rgba(240, 248, 240, 0.1)); padding: 20px 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            Ayurveda: Nature's timeless blueprint for wellness, treating root causes with herbal wisdom, dietary harmony, and lifestyle balance to prevent illness and unlock your body's innate healing power.
+        </p>
+        <h2 style="font-size: 42px; color: var(--primary-dark);">How AyurMitraAI Works</h2>
+        <p style="font-size: 18px; color: #666; max-width: 700px; margin: 20px auto;">
+            Three simple steps to understand your health through the lens of Ayurveda
+        </p>
+    </div>
+    
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-notes-medical"></i>
+            </div>
+            <h3>1. Share Symptoms</h3>
+            <p>
+                Enter your symptoms, lifestyle habits, and body parameters. 
+                Our AI analyzes multiple factors for comprehensive assessment.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3>2. Get Analysis</h3>
+            <p>
+                Receive disease probability, dosha imbalance analysis, 
+                and personalized recommendations with explainable AI insights.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h3>3. Follow Guidance</h3>
+            <p>
+                Access curated herbal remedies, diet plans, and lifestyle 
+                modifications based on your unique constitution.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<section class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+        <div>
+            <h2 style="font-size: 36px; color: var(--primary-dark); margin-bottom: 20px;">Understanding Your Dosha</h2>
+            <p style="margin-bottom: 20px;">In Ayurveda, health is balance. Your unique combination of Vata, Pitta, and Kapha determines your constitution and predisposition to diseases.</p>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 15px;">1. Vata - Movement & Communication</li>
+                <li style="margin-bottom: 15px;">2. Pitta - Metabolism & Transformation</li>
+                <li style="margin-bottom: 15px;">3. Kapha - Structure & Lubrication</li>
+            </ul>
+            <a href="/dosha"><button class="btn-primary" style="margin-top: 20px;">Learn About Doshas</button></a>
+        </div>
+        <div style="background: linear-gradient(135deg, #f6d5a1 0%, #e6c8aa 100%); border-radius: 30px; padding: 40px;">
+            <img src="{{ url_for('static', filename='images/dosha.jfif') }}" alt="Doshas" style="width: 100%;">        </div>
+    </div>
+</section>
+
+<div class="loader">
+    <div class="spinner"></div>
+</div>
+
+{% endblock %}

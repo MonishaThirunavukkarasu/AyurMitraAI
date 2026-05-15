@@ -1,0 +1,14 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+pandas
+numpy
+scikit-learn
+tensorflow
+keras
+shap
+matplotlib
+seaborn
+joblib
+bcrypt
+nltk
